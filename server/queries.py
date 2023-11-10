@@ -6,7 +6,8 @@ def query_all_films():
 
 # functie: query films met een rang hoger dan rank
 def query_films_ranked_higher(limit):
-    return f"select film.id as id, film.title as title, (select round(max(rank),1) from ranking where ranking.film_id = film.id) as rank from film order by rank asc limit 3;"
+    print(f'limit moet zijn: {limit}')
+    return f"select film.id as id, film.title as title, (select round(avg(rank),1) from ranking where ranking.film_id = film.id) as rank from film order by rank desc limit {limit};"
 
 # functie: query 1 film o.b.v. id
 def query_one_film(id):
